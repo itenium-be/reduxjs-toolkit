@@ -7,27 +7,14 @@ const initialState = {
   todos: fetchTodos(),
 };
 
-type ToggleTodoAction = ReturnType<typeof toggleTodo>;
 type AddTodoAction = ReturnType<typeof addTodo>;
 type RemoveTodoAction = ReturnType<typeof removeTodo>;
+type ToggleTodoAction = ReturnType<typeof toggleTodo>;
+type TodoActions = AddTodoAction | RemoveTodoAction | ToggleTodoAction;
 
-type TodoActions = ToggleTodoAction | AddTodoAction | RemoveTodoAction;
-
-export const toggleTodo = (id: number) => ({
-  type: "TOGGLE_TODO" as const,
-  payload: id,
-});
-
-export const addTodo = (todo: Todo) => ({
-  type: "ADD_TODO" as const,
-  payload: todo,
-});
-
-export const removeTodo = (id: number) => ({
-  type: "REMOVE_TODO" as const,
-  payload: id,
-});
-
+export const addTodo = (todo: Todo) => ({type: "ADD_TODO" as const, payload: todo});
+export const removeTodo = (id: number) => ({type: "REMOVE_TODO" as const, payload: id});
+export const toggleTodo = (id: number) => ({type: "TOGGLE_TODO" as const, payload: id});
 
 function rootReducer(state = initialState, action: TodoActions) {
   switch (action.type) {
