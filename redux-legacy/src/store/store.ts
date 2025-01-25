@@ -16,7 +16,7 @@ export const addTodo = (todo: Todo) => ({type: "ADD_TODO" as const, payload: tod
 export const removeTodo = (id: number) => ({type: "REMOVE_TODO" as const, payload: id});
 export const toggleTodo = (id: number) => ({type: "TOGGLE_TODO" as const, payload: id});
 
-function rootReducer(state = initialState, action: TodoActions) {
+export function todoReducer(state = initialState, action: TodoActions) {
   switch (action.type) {
     case "ADD_TODO":
       return {
@@ -38,7 +38,7 @@ function rootReducer(state = initialState, action: TodoActions) {
   }
 }
 
-export const store = createStore(rootReducer);
+export const store = createStore(todoReducer);
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootStore> = useSelector;
