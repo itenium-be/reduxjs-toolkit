@@ -7,60 +7,45 @@ const initialState = {
   todos: fetchTodos(),
 };
 
-const ADD_TODO = "ADD_TODO";
-const REMOVE_TODO = "REMOVE_TODO";
-const TOGGLE_TODO = "TOGGLE_TODO";
+type ToggleTodoAction = ReturnType<typeof toggleTodo>;
+type AddTodoAction = ReturnType<typeof addTodo>;
+type RemoveTodoAction = ReturnType<typeof removeTodo>;
 
-interface ToggleTodoAction {
-  type: "TOGGLE_TODO";
-  payload: number;
-}
+type TodoActions = ToggleTodoAction | AddTodoAction | RemoveTodoAction;
 
-interface AddTodoAction {
-  type: "ADD_TODO";
-  payload: Todo;
-}
-
-interface RemoveTodoAction {
-  type: "REMOVE_TODO";
-  payload: number;
-}
-
-type TodoAction = ToggleTodoAction | AddTodoAction | RemoveTodoAction;
-
-export const toggleTodo = (id: number): ToggleTodoAction => ({
-  type: TOGGLE_TODO,
+export const toggleTodo = (id: number) => ({
+  type: "TOGGLE_TODO" as const,
   payload: id,
 });
 
-export const addTodo = (todo: Todo): AddTodoAction => ({
-  type: ADD_TODO,
+export const addTodo = (todo: Todo) => ({
+  type: "ADD_TODO" as const,
   payload: todo,
 });
 
-export const removeTodo = (id: number): RemoveTodoAction => ({
-  type: REMOVE_TODO,
+export const removeTodo = (id: number) => ({
+  type: "REMOVE_TODO" as const,
   payload: id,
 });
 
 
-function rootReducer(state = initialState, action: TodoAction) {
+function rootReducer(state = initialState, action: TodoActions) {
   switch (action.type) {
-    case ADD_TODO:
+    case "ADD_TODO":
       return {
         ...state,
         todos: [...state.todos, action.payload],
       };
-    case REMOVE_TODO:
+    case "REMOVE_TODO":
       return {
         ...state,
         todos: state.todos.filter(todo => todo.id !== action.payload),
       };
-    case TOGGLE_TODO:
+    case "TOGGLE_TODO":
       return {
         ...state,
         todos: state.todos.map(todo => todo.id === action.payload ? {...todo, done: !todo.done} : todo),
-      }
+      };
     default:
       return state;
   }
