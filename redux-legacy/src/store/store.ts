@@ -42,3 +42,5 @@ export const store = createStore(todoReducer);
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+// NEXT: redux-modern/src/todos/todoSlice.ts
