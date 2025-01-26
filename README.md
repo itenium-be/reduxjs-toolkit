@@ -18,3 +18,17 @@ cd redux-legacy
 npm install
 npm start
 ```
+
+## Redux Modern
+
+```sh
+cd redux-modern
+npm install
+npm start
+```
+
+## Talk
+
+Add a Todo:
+- Present findings on devs.gent
+- Talk about ReduxJS/Toolkit and migrating.

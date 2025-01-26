@@ -3,13 +3,18 @@ import { fetchTodos } from './fetchTodos';
 import { Todo } from './types';
 
 const todoSlice = createSlice({
+  // Action prefix: todos/addTodo, todos/removeTodo etc
   name: "todos",
   initialState: fetchTodos(),
   reducers: {
     addTodo: (state, action: PayloadAction<Todo>) => {
+      // "state" is WritableDraft<Todo>[] (=Immer)
+      // "[].push()" does NOT mutate!
       state.push(action.payload);
     },
     removeTodo: (state, action: PayloadAction<number>) => {
+      // state = newState does NOT work!
+      // In such case, return the newState
       return state.filter(todo => todo.id !== action.payload);
     },
     toggleTodo: (state, action: PayloadAction<number>) => {
@@ -34,7 +39,7 @@ export const todoReducer = todoSlice.reducer;
 // - The toolkit combines the Actions & Reducers into one
 // - No crazy spreading thanks to Immer
 // - No overhead for type safety
-// - The tests pretty much just keep working!
+// - The tests just keep working!
 
 // Final verdict?
 // 41 lines --> 28 lines
