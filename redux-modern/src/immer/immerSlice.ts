@@ -26,6 +26,7 @@ function reducerSpreadHell(state: any, action: any) {
 
 
 
+// Immer -- Eliminating the #1 cause of Redux bugs 🏆🥇
 // https://github.com/immerjs/immer ⭐ 28k
 // Create the next immutable state tree by simply modifying the current tree
 
@@ -43,6 +44,11 @@ export const immerSlice = createSlice({
       // It tracks all mutations and then creates the newState
       // by replaying the mutations in an immutable equivalent
       state.newMessagesCount++;
+
+      // ATTN: Immer cannot track primitives!
+      // --> state.newMessagesCount is only increased by one!
+      let { newMessagesCount } = state;
+      newMessagesCount++;
     },
   },
 });

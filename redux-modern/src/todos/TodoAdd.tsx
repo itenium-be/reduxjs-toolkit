@@ -1,49 +1,104 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { produce } from "immer";
 import { useAppDispatch } from "../store";
 import { Todo } from "./types";
 import { addTodo } from "./todoSlice";
-import { useNavigate } from "react-router-dom";
 
 export const TodoAdd = () => {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  // If you've got 10 properties, then 10x useState???
+  // const [title, setTitle] = useState("");
+  // const [text, setText] = useState("");
+
+  // Nimmer!
+  const [todo, setTodo] = useState<Todo>(produce(() => ({
+    id: Date.now() * -1,
+    title: '',
+    text: '',
+    done: false,
+  })));
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleAddTodo = () => {
-    if (title.trim() && text.trim()) {
-      const newTodo: Todo = {
-        id: Date.now() * -1,
-        title,
-        text,
-        done: false,
-      };
-
-      dispatch(addTodo(newTodo));
-      navigate('/todos');
-    }
+    dispatch(addTodo(todo));
+    navigate('/todos');
   };
 
   return (
     <div className="mb-4">
-      <h2>Add a New Todo</h2>
+      <h2>Add Todo</h2>
       <input
         type="text"
         className="form-control mb-2"
         placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={todo.title}
+        onChange={e => setTodo(produce(todo, draft => {draft.title = e.target.value}))}
       />
       <textarea
         className="form-control mb-2"
         placeholder="Description"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={todo.text}
+        onChange={e => setTodo(produce(todo, draft => {draft.text = e.target.value}))}
       />
       <button
         className="btn btn-primary"
         onClick={handleAddTodo}
-        disabled={!title.trim() || !text.trim()}
+        disabled={!todo.title.trim() || !todo.text.trim()}
+      >
+        Add Todo
+      </button>
+    </div>
+  );
+}
+
+
+export const TodoAddHelperFunction = () => {
+  const [todo, setTodo] = useState<Todo>(produce(() => ({
+    id: Date.now() * -1,
+    title: '',
+    text: '',
+    done: false,
+  })));
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  // We could simplify this a bit with a helper function
+  // But, there is a 📦 for that: use-immer ⭐ 4.2k
+  // NEXT: See TodoAddUseImmer.tsx
+  const updateTodo = <K extends keyof Todo>(key: K, value: Todo[K]) => {
+    setTodo(produce(todo, draft => {
+      draft[key] = value;
+    }));
+  }
+
+  const handleAddTodo = () => {
+    dispatch(addTodo(todo));
+    navigate('/todos');
+  };
+
+  return (
+    <div className="mb-4">
+      <h2>Add Todo</h2>
+      <input
+        type="text"
+        className="form-control mb-2"
+        placeholder="Title"
+        value={todo.title}
+        onChange={e => updateTodo('title', e.target.value)}
+      />
+      <textarea
+        className="form-control mb-2"
+        placeholder="Description"
+        value={todo.text}
+        onChange={e => updateTodo('text', e.target.value)}
+      />
+      <button
+        className="btn btn-primary"
+        onClick={handleAddTodo}
+        disabled={!todo.title.trim() || !todo.text.trim()}
       >
         Add Todo
       </button>

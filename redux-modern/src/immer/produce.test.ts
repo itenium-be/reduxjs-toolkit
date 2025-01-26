@@ -174,6 +174,20 @@ describe("Immer Pizza", () => {
 
 
 
+describe("immerSlice reducer", () => {
+  it("should increment newMessagesCount when addMessage is called", () => {
+    const initialState = { newMessagesCount: 0 };
+    const newState = immerSlice.reducer(initialState, immerSlice.actions.addMessage({}));
+
+    // ATTN: We do a second newMessagesCount++ on a primitive
+    // --> This does not work, so the newState is still one.
+    expect(newState.newMessagesCount).toBe(1);
+  });
+});
+
+// Immer can also be used with:
+// Map, Set by calling enableMapSet() at startup
+// Classes by import {immerable} from "immer" and setting class { [immerable] = true; }
 
 
 
@@ -199,17 +213,6 @@ describe("Pizza Reducing Hell -- additional checks", () => {
     expect(newState).toBe(ourPizzas);
   });
 });
-
-
-
-describe("immerSlice reducer", () => {
-  it("should increment newMessagesCount when addMessage is called", () => {
-    const initialState = { newMessagesCount: 0 };
-    const newState = immerSlice.reducer(initialState, immerSlice.actions.addMessage({}));
-    expect(newState.newMessagesCount).toBe(1);
-  });
-});
-
 
 
 // describe("immer store", () => {
