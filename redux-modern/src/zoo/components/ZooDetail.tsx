@@ -4,6 +4,7 @@ import { useGetZooQuery } from "../zoo-api";
 import { ErrorDisplay } from "../../layout/ErrorDisplay";
 import { Creature, Facility, Visitor } from "../MythicalZoo";
 import { ZooNavigator } from "./ZooNavigator";
+import { VisitZoo } from "./VisitZoo";
 
 export const ZooDetail = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ export const ZooDetail = () => {
   // The hook created for /api/zoos/:id
   const { data, error, isLoading, isFetching, refetch } = useGetZooQuery(Number(id), {
     // pollingInterval: 2000,
-    refetchOnMountOrArgChange: true,
+    // refetchOnMountOrArgChange: true,
     // skip & skipPollingIfUnfocused
     // refetchOnFocus & refetchOnReconnect
   });
@@ -88,7 +89,7 @@ const Facilities = ({facilities}: {facilities: Facility[]}) => {
                 <h5 className="card-title">{facility.name}</h5>
                 <p className="card-text">{facility.description}</p>
                 {facility.offers.map(offer => (
-                  <span key={offer} className="badge bg-primary" style={{marginRight: 12, fontSize: 24}}>
+                  <span key={offer} className="badge bg-info" style={{marginRight: 12, fontSize: 24}}>
                     {offer}
                   </span>
                 ))}
@@ -138,9 +139,14 @@ const Creatures = ({creatures}: {creatures: Creature[]}) => {
 }
 
 const Visitors = ({visitors}: {visitors: Visitor[]}) => {
+  const { id } = useParams();
+
   return (
     <div className="card-body border-top">
-      <h3 className="mt-5">Notable Visitors</h3>
+      <h3 className="mt-5">
+        Notable Visitors
+        <VisitZoo zooId={Number(id)} />
+      </h3>
       <div className="row g-3">
         {visitors.map((visitor) => (
           <div key={visitor.id} className="col-md-6 col-lg-4">
@@ -149,7 +155,9 @@ const Visitors = ({visitors}: {visitors: Visitor[]}) => {
                 <h5 className="card-title">
                   {visitor.name} <span className="badge bg-info">{visitor.type}</span>
                 </h5>
-                <p className="card-text">Favorite Creatures: {visitor.favoriteCreatures.join(", ")}</p>
+                {!!visitor.favoriteCreatures?.length && (
+                  <p className="card-text">Favorite Creatures: {visitor.favoriteCreatures.join(", ")}</p>
+                )}
                 <p className="card-text">
                   Ticket: <span className="badge bg-success">{visitor.ticketType}</span>
                 </p>

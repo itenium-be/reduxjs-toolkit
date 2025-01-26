@@ -1,14 +1,14 @@
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 import { setupWorker } from "msw/browser";
 import { zoos } from "./db/zoos";
+import { Visitor } from "./MythicalZoo";
+import { visitors } from "./db/visitors";
 
 // Using https://mswjs.io/ to serve the JSON as a "backend"
 // With WebWorker:
 // npx msw init ./public --save
 
-const wait = (ms = 2000): Promise<void> => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
+const wait = () => delay(2000);
 
 export type ApiResponse<T> = {
   data: T;
@@ -48,6 +48,22 @@ export const handlers = [
         self: `/api/zoos/${params.id}`
       }
     })
+  }),
+
+  http.post('/api/zoos/:id', async ({ params, request }) => {
+    const zooId = Number(params.id);
+    const visitor = await request.json() as Visitor;
+    const zoo = zoos.find(x => x.id === zooId);
+    if (zoo) {
+      visitor.id = visitors.length + 1;
+      visitor.favoriteCreatures = [];
+      zoo.visitors.push(visitor);
+      visitors.push(visitor);
+    }
+
+    return HttpResponse.json({
+      data: zoo
+    });
   }),
 ];
 
