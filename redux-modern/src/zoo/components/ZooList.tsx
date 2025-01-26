@@ -4,7 +4,9 @@ import { ErrorDisplay } from "../../layout/ErrorDisplay";
 import { Loading } from "../../layout/Loading";
 
 export const ZooList = () => {
+  // The createApi from @reduxjs/toolkit/query/react creates this hook
   const { data, error, isLoading } = useGetZoosQuery();
+  // NEXT: ZooDetail.tsx
 
   if (isLoading)
     return <Loading />;
@@ -19,7 +21,7 @@ export const ZooList = () => {
         <div style={{fontSize: 18, color: '#ccc'}}>Where do you want to go today?</div>
       </h1>
       <div className="row g-4">
-        {data!.map((zoo) => (
+        {data!.map(zoo => (
           <div key={zoo.id} className="col-md-6 col-lg-4">
             <div className="card shadow-sm">
               <img src={`/zoos/${zoo.id}.png`} className="card-img-top" alt={zoo.name} />
@@ -31,7 +33,7 @@ export const ZooList = () => {
                 <p className="card-text">
                   {zoo.desc}
                 </p>
-                <Link to={`/zoo/${zoo.id}`} className="btn btn-success" style={{width: '100%'}}>
+                <Link to={`/zoos/${zoo.id}`} className="btn btn-success" style={{width: '100%'}}>
                   Visit Zoo
                 </Link>
               </div>

@@ -6,8 +6,17 @@ import { TodoAdd } from "./todos/TodoAdd";
 import { TodoEdit } from "./todos/TodoEdit";
 import { TodoAddUseImmer } from "./todos/TodoAddUseImmer"; // eslint-disable-line
 import { ZooList } from "./zoo/components/ZooList";
+import { ZooDetail } from "./zoo/components/ZooDetail";
 
-const Home = () => <h2>Modern Redux</h2>;
+const Home = () => (
+  <>
+    <h2>Modern Redux</h2>
+    <ul>
+      <li><b>Todos</b>: Basics + Immer</li>
+      <li><b>Mythical Zoos</b>: RTK Query</li>
+    </ul>
+  </>
+);
 
 export function App() {
   return (
@@ -22,6 +31,7 @@ export function App() {
           {/* <Route path="/add" element={<TodoAddUseImmer />} /> */}
 
           <Route path="/zoos" element={<ZooList />} />
+          <Route path="/zoos/:id" element={<ZooDetail />} />
         </Routes>
       </div>
       <Footer />

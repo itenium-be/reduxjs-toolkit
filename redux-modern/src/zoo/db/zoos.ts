@@ -3,7 +3,8 @@ import { creatures } from "./creatures";
 import { facilities } from "./facilities";
 import { visitors } from "./visitors";
 
-function getRandomElements<T>(array: T[], count: number): T[] {
+function getRandomElements<T>(array: T[]): T[] {
+  const count = Math.floor(Math.random() * (array.length / 3)) + 3;
   return array.sort(() => 0.5 - Math.random()).slice(0, count);
 }
 
@@ -33,7 +34,7 @@ export const zoos: MythicalZoo[] = zooNames.map((name, index) => ({
   name,
   desc: zooDescs[index],
   rating: randomStars(),
-  creatures: getRandomElements(creatures, Math.min(3, creatures.length)),
-  visitors: getRandomElements(visitors, Math.min(3, visitors.length)),
-  facilities: getRandomElements(facilities, Math.min(3, facilities.length)),
+  creatures: getRandomElements(creatures),
+  visitors: getRandomElements(visitors),
+  facilities: getRandomElements(facilities),
 }));

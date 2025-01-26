@@ -26,7 +26,7 @@ export const creatures: Creature[] = [
     habitat: "🏔️",
     diet: "🥩",
     magicLevel: 90,
-    specialAbilities: ["Ice Breath", "Gliding", "Frost Aura"],
+    specialAbilities: ["Flying", "Ice Breath", "Undead"],
   },
   {
     id: 4,

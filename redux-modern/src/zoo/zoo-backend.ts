@@ -7,8 +7,17 @@ import { zoos } from "./db/zoos";
 // npx msw init ./public --save
 
 const wait = (ms = 2000): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 };
+
+export type ApiResponse<T> = {
+  data: T;
+  links?: {
+    self: string;
+    next?: string;
+    previous?: string;
+  }
+}
 
 export const handlers = [
   http.get('/api/zoos', async () => {
@@ -23,6 +32,22 @@ export const handlers = [
       rating: zoo.rating,
       desc: zoo.desc,
     })));
+  }),
+
+  http.get('/api/zoos/:id', async ({ params }) => {
+    await wait();
+
+    const fullZoo = zoos.find(x => x.id === Number(params.id));
+    return HttpResponse.json({
+      // Sometimes you have a backend that
+      // wraps the actual response somehow
+
+      // This is handled in zoo-api.ts with transformResponse
+      data: fullZoo,
+      links: {
+        self: `/api/zoos/${params.id}`
+      }
+    })
   }),
 ];
 

@@ -18,7 +18,7 @@ export const store = configureStore({
 });
 
 // NEXT: Show how it works in Redux DevTools & Network Tabs
-
+// NEXT: Show src/zoo/components/ZooList.tsx
 
 
 type AppDispatch = typeof store.dispatch;
