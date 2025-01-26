@@ -13,6 +13,8 @@ Say goodbye to boilerplate and hello to a new era of Redux development—Redux r
 
 ## Redux Legacy
 
+Simple example of a legacy Redux implementation.
+
 ```sh
 cd redux-legacy
 npm install
@@ -21,11 +23,21 @@ npm start
 
 ## Redux Modern
 
+- Basic example & Setup with a small todo app
+  - `createSlice`, the (included) Immer library and (separate) `useImmer` package.
+
+
 ```sh
 cd redux-modern
 npm install
 npm start
 ```
+
+### Mythical Zoos
+
+- RTK Query with `createApi`
+- `createAsyncThunk` and `createSelector` from the (included) reselect library
+
 
 ## Talk
 

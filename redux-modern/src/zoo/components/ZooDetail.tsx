@@ -14,7 +14,7 @@ export const ZooDetail = () => {
     // pollingInterval: 2000,
     // refetchOnMountOrArgChange: true,
     // skip & skipPollingIfUnfocused
-    // refetchOnFocus & refetchOnReconnect
+    // refetchOnFocus & refetchOnReconnect --> requires setupListeners(store.dispatch);
   });
   // NEXT: ZooNavigator.tsx
 
