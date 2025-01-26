@@ -36,6 +36,11 @@ export const Header = () => {
                   Add
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/zoos">
+                  🏰 Mythical Zoos
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

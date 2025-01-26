@@ -46,3 +46,5 @@ export const TodoAddUseImmer = () => {
     </div>
   );
 }
+
+// NEXT: RTK Query, because maybe you want to do some fetching? See src/zoo/zoo-api.ts

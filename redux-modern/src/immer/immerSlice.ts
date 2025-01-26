@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Accidentally mutating state in reducers is the
 // single most common mistake Redux users make.
-function reducerSpreadHell(state: any, action: any) {
+function reducerSpreadHell(state: any, action: any) { // eslint-disable-line
   // Also, do you really want to be doing this...
   return {
     ...state,
@@ -48,7 +48,7 @@ export const immerSlice = createSlice({
       // ATTN: Immer cannot track primitives!
       // --> state.newMessagesCount is only increased by one!
       let { newMessagesCount } = state;
-      newMessagesCount++;
+      newMessagesCount++; // eslint-disable-line
     },
   },
 });
