@@ -5,6 +5,6 @@ export type Todo = {
   done: boolean;
 }
 
-export type RootStore = {
+export type RootState = {
   todos: Todo[];
 }

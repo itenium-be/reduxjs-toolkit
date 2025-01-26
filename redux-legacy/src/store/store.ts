@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from './fetchTodos';
-import { RootStore, Todo } from './types';
+import { RootState, Todo } from './types';
 
 const initialState = {
   todos: fetchTodos(),
@@ -41,4 +41,4 @@ export function todoReducer(state = initialState, action: TodoActions) {
 export const store = createStore(todoReducer);
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootStore> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
