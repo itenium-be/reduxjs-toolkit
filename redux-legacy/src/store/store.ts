@@ -38,6 +38,8 @@ export function todoReducer(state = initialState, action: TodoActions) {
   }
 }
 
+// Typically you also have a combineReducers, applyMiddleware, composeWithDevTools etc here
+// enough to make a grown man cry.
 export const store = createStore(todoReducer);
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;

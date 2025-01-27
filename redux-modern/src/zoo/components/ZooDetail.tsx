@@ -67,7 +67,7 @@ export const ZooDetail = () => {
 
 
 
-const Facilities = ({facilities}: {facilities: Facility[]}) => {
+export const Facilities = ({facilities}: {facilities: Facility[]}) => {
   return (
     <div className="card-body border-top">
       <h3 className="mt-4">Facilities</h3>
@@ -102,7 +102,7 @@ const Facilities = ({facilities}: {facilities: Facility[]}) => {
   );
 }
 
-const Creatures = ({creatures}: {creatures: Creature[]}) => {
+export const Creatures = ({creatures}: {creatures: Creature[]}) => {
   return (
     <div className="card-body border-top">
       <h3 className="mt-5">Creatures</h3>

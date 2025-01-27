@@ -28,7 +28,7 @@ export const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/todos">
-                  Todos
+                  ✅ Todos
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,6 +39,11 @@ export const Header = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/zoos">
                   🏰 Mythical Zoos
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/wilds">
+                  🌿 Enchanted Wilds
                 </Link>
               </li>
             </ul>

@@ -3,6 +3,7 @@ import { setupWorker } from "msw/browser";
 import { zoos } from "./db/zoos";
 import { Visitor } from "./MythicalZoo";
 import { visitors } from "./db/visitors";
+import { creatures } from "./db/creatures";
 
 // Using https://mswjs.io/ to serve the JSON as a "backend"
 // With WebWorker:
@@ -64,6 +65,12 @@ export const handlers = [
     return HttpResponse.json({
       data: zoo
     });
+  }),
+
+
+
+  http.get('/api/creatures', async () => {
+    return HttpResponse.json(creatures);
   }),
 ];
 
