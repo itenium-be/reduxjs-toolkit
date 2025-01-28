@@ -19,7 +19,7 @@ export const WildsList = () => {
     }
   }, [dispatch]);
 
-  if (!data && (status === 'idle' || status === 'pending'))
+  if (!data?.length && (status === 'idle' || status === 'pending'))
     return <Loading />;
 
   if (status === 'failed')
