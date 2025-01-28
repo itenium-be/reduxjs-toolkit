@@ -5,6 +5,7 @@ import { ErrorDisplay } from "../../layout/ErrorDisplay";
 import { Creature, Facility, Visitor } from "../MythicalZoo";
 import { ZooNavigator } from "./ZooNavigator";
 import { VisitZoo } from "./VisitZoo";
+import { useAppSelector } from "../../store";
 
 export const ZooDetail = () => {
   const { id } = useParams();
@@ -140,6 +141,13 @@ export const Creatures = ({creatures}: {creatures: Creature[]}) => {
 
 const Visitors = ({visitors}: {visitors: Visitor[]}) => {
   const { id } = useParams();
+  const creatures = useAppSelector(state => state.wilds.creatures);
+
+  const getCreatures = (creatureIds: number[]) => {
+    return creatureIds.map(creatureId => creatures
+      .find(c => c.id === creatureId))
+      .filter(c => !!c);
+  }
 
   return (
     <div className="card-body border-top">
@@ -154,17 +162,47 @@ const Visitors = ({visitors}: {visitors: Visitor[]}) => {
               <div className="card-body">
                 <h5 className="card-title">
                   {visitor.name} <span className="badge bg-info">{visitor.type}</span>
+                  <span className="badge bg-success float-end">{visitor.ticketType}</span>
                 </h5>
-                {!!visitor.favoriteCreatures?.length && (
-                  <p className="card-text">Favorite Creatures: {visitor.favoriteCreatures.join(", ")}</p>
-                )}
-                <p className="card-text">
-                  Ticket: <span className="badge bg-success">{visitor.ticketType}</span>
-                </p>
+                <FavouriteCreatures favoriteCreatures={getCreatures(visitor.favoriteCreatures)} />
               </div>
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+export const FavouriteCreatures = ({favoriteCreatures}: {favoriteCreatures: Creature[]}) => {
+  if (!favoriteCreatures?.length)
+    return null;
+
+  return (
+    <>
+      <b>Favorite Creatures</b>
+      {favoriteCreatures.map(creature => (
+        <SmallCreature key={creature.id} creature={creature} />
+      ))}
+    </>
+  );
+}
+
+
+const SmallCreature = ({creature}: {creature: Creature}) => {
+  return (
+    <div className="d-flex align-items-center mb-3 shadow-sm p-2 rounded">
+      <img
+        src={`/zoos/creature/${creature.id}.webp`}
+        alt={creature.name}
+        className="rounded me-3"
+        style={{ width: "50px", height: "50px", objectFit: "cover" }}
+      />
+      <div>
+        <h6 className="mb-0">{creature.type} {creature.name}</h6>
+        <small className="text-muted">
+          ✨ {creature.magicLevel}
+        </small>
       </div>
     </div>
   );

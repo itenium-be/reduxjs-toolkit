@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Loading } from "../../layout/Loading";
-import { Creature, Visitor } from "../../zoo/MythicalZoo";
+import { Visitor } from "../../zoo/MythicalZoo";
 import { WildsNavigator } from "./WildsNavigator";
 import { VisitWilds } from "./VisitWilds";
-import { Creatures, Facilities } from "../../zoo/components/ZooDetail";
+import { Creatures, Facilities, FavouriteCreatures } from "../../zoo/components/ZooDetail";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { useEffect } from "react";
 import { fetchWild, selectZoo } from "../wildsSlice";
@@ -94,38 +94,11 @@ const Visitors = ({visitors}: {visitors: Visitor[]}) => {
 
                   <span className="badge bg-success float-end">{visitor.ticketType}</span>
                 </h5>
-                {!!visitor.favoriteCreatures?.length && (
-                  <>
-                    <p className="card-text">Favorite Creatures</p>
-                    {visitor.favoriteCreatures.map(creature => (
-                      <SmallCreature key={creature.id} creature={creature} />
-                    ))}
-                  </>
-                )}
+                <FavouriteCreatures favoriteCreatures={visitor.favoriteCreatures} />
               </div>
             </div>
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-
-const SmallCreature = ({creature}: {creature: Creature}) => {
-  return (
-    <div className="d-flex align-items-center mb-3 shadow-sm p-2 rounded">
-      <img
-        src={`/zoos/creature/${creature.id}.webp`}
-        alt={creature.name}
-        className="rounded me-3"
-        style={{ width: "50px", height: "50px", objectFit: "cover" }}
-      />
-      <div>
-        <h6 className="mb-0">{creature.type} {creature.name}</h6>
-        <small className="text-muted">
-          ✨ {creature.magicLevel}
-        </small>
       </div>
     </div>
   );
