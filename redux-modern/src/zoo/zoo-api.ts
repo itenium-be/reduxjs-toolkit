@@ -62,10 +62,7 @@ export const zooApiSlice = createApi({
               ticketType: visitor.ticketType ?? "🎫 Standard",
               favoriteCreatures: [],
             }
-            return {
-              ...draft,
-              visitors: [...draft.visitors, tempVisitor],
-            };
+            draft.visitors.push(tempVisitor);
           })
         );
 
