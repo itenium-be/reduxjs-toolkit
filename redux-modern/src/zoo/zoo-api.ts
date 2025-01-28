@@ -16,7 +16,7 @@ export const zooApiSlice = createApi({
       query: () => '/zoos',
       providesTags: ['zoos'],
     }),
-    // NEXT: Check how it's wired up in /src/store.ts
+    // NEXT: Check how it's wired in /src/store.ts
 
 
 

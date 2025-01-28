@@ -55,4 +55,5 @@ export const todoReducer = todoSlice.reducer;
 // Final verdict?
 // 41 lines --> 28 lines
 
+// NEXT: Show how to add the slice to your store: store.ts
 // NEXT: Let's look at Immer first (immer/immerSlice.ts)

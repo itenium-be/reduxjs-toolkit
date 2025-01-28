@@ -13,6 +13,28 @@ export const store = configureStore({
     immer: immerSlice.reducer,
     wilds: wildsSlice.reducer,
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Attach the RTK Query API Reducer
     [zooApiSlice.reducerPath]: zooApiSlice.reducer,
   },
