@@ -9,7 +9,7 @@ import { creatures } from "./db/creatures";
 // With WebWorker:
 // npx msw init ./public --save
 
-const wait = () => delay(2000);
+const wait = () => delay(1000);
 
 export type ApiResponse<T> = {
   data: T;
