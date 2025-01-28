@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SerializedErrorDisplay } from "../../layout/ErrorDisplay";
 import { Loading } from "../../layout/Loading";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { useEffect, useRef } from "react";
 import { fetchWilds } from "../wildsSlice";
 
 export const WildsList = () => {
@@ -10,13 +10,9 @@ export const WildsList = () => {
   const status = useAppSelector(state => state.wilds.status);
   const error = useAppSelector(state => state.wilds.error);
   const dispatch = useAppDispatch();
-  const hasFetchedRef = useRef(false);
 
   useEffect(() => {
-    if (!hasFetchedRef.current) {
-      hasFetchedRef.current = true;
-      dispatch(fetchWilds());
-    }
+    dispatch(fetchWilds());
   }, [dispatch]);
 
   if (!data?.length && (status === 'idle' || status === 'pending'))
