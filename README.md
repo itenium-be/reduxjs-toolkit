@@ -44,3 +44,10 @@ npm start
 Add a Todo:
 - Present findings on devs.gent
 - Talk about ReduxJS/Toolkit and migrating.
+
+### More!?
+
+- classComponents: dispatch ReduxJS/Toolkit actions
+- createEntityAdapter: for all your CRUD needs (ready-made reducers & selectors!)
+- listenerMiddleware: recommended alternative for RXJS, Sagas, ...
+- thunkCancellation: Auto-Complete: whenever the needle changes, we're no longer interested in previous results

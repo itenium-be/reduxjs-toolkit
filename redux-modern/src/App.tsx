@@ -12,6 +12,7 @@ import { WildsList } from "./wilds/components/WildsList";
 import { WildsDetail } from "./wilds/components/WildsDetail";
 import { getCreatures } from "./wilds/wildsSlice";
 import { useAppDispatch } from "./store";
+import { Users } from "./more/Users";
 
 const Home = () => (
   <>
@@ -46,6 +47,8 @@ export function App() {
 
           <Route path="/wilds" element={<WildsList />} />
           <Route path="/wilds/:id" element={<WildsDetail />} />
+
+          <Route path="/profile" element={<Users />} />
         </Routes>
       </div>
       <Footer />

@@ -20,7 +20,7 @@ export const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
@@ -47,6 +47,13 @@ export const Header = () => {
                 </Link>
               </li>
             </ul>
+            <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                <i className="fas fa-user"></i>
+              </Link>
+            </li>
+          </ul>
           </div>
         </div>
       </nav>
