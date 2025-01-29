@@ -96,12 +96,14 @@ const Visitors = ({visitors}: {visitors: Visitor[]}) => {
         {fullVisitors.filter(visitor => !!visitor).map(visitor => (
           <div key={visitor.id} className="col-md-6 col-lg-4">
             <div className="card h-100 shadow-sm">
-              <div className="card-body">
+              <div className="card-body pb-0">
                 <h5 className="card-title">
                   {visitor.name} <span className="badge bg-info">{visitor.type}</span>
                   <span className="badge bg-success float-end">{visitor.ticketType}</span>
                 </h5>
                 <FavouriteCreatures favoriteCreatures={visitor.favoriteCreatures} />
+              </div>
+              <div className="card-footer bg-transparent border-0 pt-0">
                 <button className="btn btn-outline-danger float-end" type="button" onClick={() => {
                     dispatch(deleteVisitor({zooId: Number(id), visitorId: visitor.id}));
                   }}

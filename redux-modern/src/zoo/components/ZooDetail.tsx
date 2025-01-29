@@ -181,17 +181,17 @@ export const FavouriteCreatures = ({favoriteCreatures}: {favoriteCreatures: Crea
   return (
     <>
       <b>Favorite Creatures</b>
-      {favoriteCreatures.map(creature => (
-        <SmallCreature key={creature.id} creature={creature} />
+      {favoriteCreatures.map((creature, index) => (
+        <SmallCreature key={creature.id} creature={creature} isLast={favoriteCreatures.length === index + 1} />
       ))}
     </>
   );
 }
 
 
-const SmallCreature = ({creature}: {creature: Creature}) => {
+const SmallCreature = ({creature, isLast}: {creature: Creature, isLast: boolean}) => {
   return (
-    <div className="d-flex align-items-center mb-3 shadow-sm p-2 rounded">
+    <div className={`d-flex align-items-center mb-${isLast ? 2 : 3} shadow-sm p-2 rounded`}>
       <img
         src={`/zoos/creature/${creature.id}.webp`}
         alt={creature.name}
