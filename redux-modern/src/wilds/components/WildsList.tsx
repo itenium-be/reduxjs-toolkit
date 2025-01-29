@@ -6,14 +6,20 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { fetchWilds } from "../wildsSlice";
 
 export const WildsList = () => {
-  const data = useAppSelector(state => state.wilds.zoos);
-  const status = useAppSelector(state => state.wilds.status);
-  const error = useAppSelector(state => state.wilds.error);
   const dispatch = useAppDispatch();
 
+  // Every time this component mounts, we re-fetch the zoos!
   useEffect(() => {
     dispatch(fetchWilds());
   }, [dispatch]);
+
+  // We select the results from the fetch
+  const data = useAppSelector(state => state.wilds.zoos);
+  const status = useAppSelector(state => state.wilds.status);
+  const error = useAppSelector(state => state.wilds.error);
+
+  // NEXT: WildsDetail.tsx for dispatching with an argument and our selectZoo selector
+
 
   if (!data?.length && (status === 'idle' || status === 'pending'))
     return <Loading />;

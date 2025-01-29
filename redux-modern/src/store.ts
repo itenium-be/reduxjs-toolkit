@@ -1,4 +1,4 @@
-import { Action, configureStore, createAsyncThunk, ThunkAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { todoReducer } from "./todos/todoSlice";
 import { immerSlice } from "./immer/immerSlice";
@@ -37,6 +37,9 @@ export const store = configureStore({
 
     // Attach the RTK Query API Reducer
     [zooApiSlice.reducerPath]: zooApiSlice.reducer,
+
+    // Also possible to combine createApi with createSlice:
+    // const fullZooReducer = combineSlices(zooApiSlice, moreZooSlice)
   },
 
   // The API middleware takes care of caching, invalidation, polling, ...
@@ -49,11 +52,8 @@ export const store = configureStore({
 // NEXT: Show src/zoo/components/ZooList.tsx
 
 
-type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 
 export type RootState = ReturnType<typeof store.getState>;
 export const useAppSelector = useSelector.withTypes<RootState>();
-
-export type AppThunk<ThunkReturnType = void> = ThunkAction<ThunkReturnType, RootState, unknown, Action>;
-export const createAppAsyncThunk = createAsyncThunk.withTypes<{state: RootState, dispatch: AppDispatch}>();

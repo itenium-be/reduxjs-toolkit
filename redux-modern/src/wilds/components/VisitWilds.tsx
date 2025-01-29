@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Visitor } from "../../zoo/MythicalZoo";
-import { useAddVisitorMutation } from "../../zoo/zoo-api";
+import { addVisitor } from "../wildsSlice";
+import { useAppDispatch } from "../../store";
 
 const defaultVisitor: Partial<Visitor> = { name: "", type: "🧙", ticketType: "🎫 Standard" };
 
 export const VisitWilds = ({zooId}: {zooId: number}) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState(defaultVisitor);
-
-  // Mutator hook created by RTK Query:
-  const [addVisitor] = useAddVisitorMutation();
+  const dispatch = useAppDispatch();
 
   if (!open) {
     return (
@@ -33,7 +32,7 @@ export const VisitWilds = ({zooId}: {zooId: number}) => {
 
     // Calling our "backend"
     const postVisitor = {...formData, zooId};
-    await addVisitor(postVisitor);
+    dispatch(addVisitor(postVisitor));
   };
 
   return (

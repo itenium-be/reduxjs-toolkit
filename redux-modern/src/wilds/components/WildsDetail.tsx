@@ -6,20 +6,27 @@ import { VisitWilds } from "./VisitWilds";
 import { Creatures, Facilities, FavouriteCreatures } from "../../zoo/components/ZooDetail";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { useEffect } from "react";
-import { fetchWild, selectZoo } from "../wildsSlice";
+import { deleteVisitor, fetchWild, selectZoo } from "../wildsSlice";
 import { createSelector } from "@reduxjs/toolkit";
 
-export const WildsDetail = () => {
-  const { id } = useParams();
-  const data = useAppSelector(state => selectZoo(state, id!));
-  const isLoading = useAppSelector(state => state.wilds.status !== 'succeeded');
-  const dispatch = useAppDispatch();
 
+export const WildsDetail = () => {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const isLoading = useAppSelector(state => state.wilds.status !== 'succeeded');
+
+  // Our selectZoo selector
+  const data = useAppSelector(state => selectZoo(state, id!));
+
+  // Another naive implementation, once fetched we never refetch!
   useEffect(() => {
     if (!data) {
       dispatch(fetchWild(Number(id)));
     }
   }, [id, data, dispatch]);
+
+  // NEXT: WildsNavigator.tsx: reselect's createSelector
+
 
   if (isLoading && !data)
     return <Loading />;
@@ -76,6 +83,7 @@ const selectVisitorsWithCreatures = createSelector(
 
 const Visitors = ({visitors}: {visitors: Visitor[]}) => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
   const fullVisitors = useAppSelector(state => selectVisitorsWithCreatures(state, visitors));
 
   return (
@@ -91,10 +99,15 @@ const Visitors = ({visitors}: {visitors: Visitor[]}) => {
               <div className="card-body">
                 <h5 className="card-title">
                   {visitor.name} <span className="badge bg-info">{visitor.type}</span>
-
                   <span className="badge bg-success float-end">{visitor.ticketType}</span>
                 </h5>
                 <FavouriteCreatures favoriteCreatures={visitor.favoriteCreatures} />
+                <button className="btn btn-outline-danger float-end" type="button" onClick={() => {
+                    dispatch(deleteVisitor({zooId: Number(id), visitorId: visitor.id}));
+                  }}
+                >
+                  <i className="far fa-trash-alt" />
+                </button>
               </div>
             </div>
           </div>

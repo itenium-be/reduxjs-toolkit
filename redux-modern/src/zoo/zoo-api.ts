@@ -73,7 +73,7 @@ export const zooApiSlice = createApi({
         }
 
         // NEXT: Migrating to RTK Query might be quite hard, maybe you want to take a step back
-        // NEXT: and stick to a more low level API -- let's look at createAsyncThunk
+        // NEXT: and stick to a more low level API -- let's look at createAsyncThunk in wilds/wildsSlice.ts
       },
       async onCacheEntryAdded(arg, { dispatch, getState, extra, requestId, cacheEntryRemoved, cacheDataLoaded, getCacheEntry, }) {
 
