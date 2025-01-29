@@ -10,24 +10,24 @@ export const visitors: Visitor[] = [
   },
   {
     id: 2,
-    name: "Gandalf",
+    name: "Elminster",
     type: "🧙",
     ticketType: "👑 VIP",
-    favoriteCreatures: [1],
+    favoriteCreatures: [1, 11],
   },
   {
     id: 3,
     name: "Diana Prince",
     type: "🦸",
     ticketType: "🎫 Standard",
-    favoriteCreatures: [4],
+    favoriteCreatures: [4, 12],
   },
   {
     id: 4,
     name: "Percy Jackson",
     type: "🧙",
     ticketType: "🎫 Standard",
-    favoriteCreatures: [],
+    favoriteCreatures: [2],
   },
   {
     id: 5,
@@ -70,5 +70,12 @@ export const visitors: Visitor[] = [
     type: "🦸",
     ticketType: "👑 VIP",
     favoriteCreatures: [5, 4],
+  },
+  {
+    id: 11,
+    name: "Caroline",
+    type: "👸🏾",
+    ticketType: "👑 VIP",
+    favoriteCreatures: [5],
   },
 ];

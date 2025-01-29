@@ -26,7 +26,7 @@ export interface Creature {
 export interface Visitor {
   id: number;
   name: string;
-  type: "🧙" | "🦸" | "👸" | "🧝";
+  type: "🧙" | "🦸" | "👸" | "🧝" | "👸🏾";
   ticketType: "🎫 Standard" | "👑 VIP";
   favoriteCreatures: number[];
 }
