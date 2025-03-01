@@ -1,4 +1,4 @@
-import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 export const increaseYearAsync = createAsyncThunk(
@@ -55,6 +55,22 @@ export const moreSlice = createSlice({
     // addUsers: usersAdapter.addMany,
     // updateUser: usersAdapter.updateOne,
     // ... there are many more fns ready for use
+
+    // Prepared Reducer Example
+    addPartialUser: {
+      reducer: (state, action: PayloadAction<User>) => {
+        usersAdapter.addOne(state.users, action.payload);
+      },
+      prepare: (user: Partial<User>) => {
+        return {
+          payload: {
+            id: 'new',
+            name: 'New User',
+            ...user,
+          }
+        };
+      },
+    },
   },
 });
 

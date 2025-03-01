@@ -155,15 +155,7 @@ export const wildsSlice = createAppSlice({
       }
     ),
     // Prepared Reducers are also possible without the create builder:
-    // addCreature: {
-    //   reducer: (state, action: PayloadAction<Creature>) => {
-    //     state.creatures.push(action.payload);
-    //   },
-    //   prepare: (creature: Creature) => {
-    //     return { payload: { creature }};
-    //   },
-    // },
-
+    // --> See moreSlice for addPartialUser example
 
     // See above, requires buildCreateSlice()
     getCreatures: create.asyncThunk(
