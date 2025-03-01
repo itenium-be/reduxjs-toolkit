@@ -6,6 +6,7 @@ import { zooApiSlice } from "./zoo/zoo-api";
 import { wildsSlice } from "./wilds/wildsSlice";
 import { moreSlice } from "./more/moreSlice";
 import { listenerMiddleware } from "./more/listenerMiddleware";
+import { middleware } from "./more/middleware";
 
 // The complexity of the legacy createStore just goes way
 // This is typically the easiest part of a migration.
@@ -47,7 +48,7 @@ export const store = configureStore({
 
   // The API middleware takes care of caching, invalidation, polling, ...
   middleware: getDefaultMiddleware => getDefaultMiddleware()
-    .concat(zooApiSlice.middleware)
+    .concat(zooApiSlice.middleware, middleware)
     .prepend(listenerMiddleware.middleware),
 
   // devTools: true (default) or DevToolsEnhancerOptions
