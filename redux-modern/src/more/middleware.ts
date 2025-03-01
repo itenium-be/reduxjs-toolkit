@@ -1,7 +1,7 @@
 import { MiddlewareAPI } from '@reduxjs/toolkit';
 
 export const middleware = ({dispatch, getState}: MiddlewareAPI) => (next: any) => (action: any) => {
-  console.log('Middleware', action);
+  // console.log('Middleware', action);
   return next(action);
 }
 

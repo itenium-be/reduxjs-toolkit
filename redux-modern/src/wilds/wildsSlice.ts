@@ -169,13 +169,13 @@ export const wildsSlice = createAppSlice({
         return state.wilds.creatures;
       }, {
         pending: state => {
-          console.log('Getting creatures');
+          // console.log('Getting creatures');
         },
         rejected: (state, action) => {
           console.log('Failed getting creatures');
         },
         fulfilled: (state, action) => {
-          console.log('Creatures fetched', action.payload);
+          // console.log('Creatures fetched', action.payload);
           state.creatures = action.payload ?? [];
         }
       }
