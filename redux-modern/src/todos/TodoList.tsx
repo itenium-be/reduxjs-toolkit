@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store";
 import { removeTodo, toggleTodo } from "./todoSlice";
-import { selectMyTodosCompletedCount } from "./todoSelectors";
+import { selectAllTodosTriggersIdentityFunctionCheckWarning, selectMyTodosCompletedCount, selectTodos } from "./todoSelectors"; // eslint-disable-line
 
 export const TodoList = () => {
-  const todos = useAppSelector(state => state.todos);
   const doneCount = useAppSelector(selectMyTodosCompletedCount);
+  const [search, setSearch] = useState('');
+  const todos = useAppSelector(state => selectTodos(state, search));
+  // const todos = useAppSelector(selectAllTodosTriggersIdentityFunctionCheckWarning);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -15,6 +18,7 @@ export const TodoList = () => {
         Upgrade Legacy React App
         <small className="float-end">✔️ {doneCount}</small>
       </h1>
+      <SearchInput search={search} setSearch={setSearch} />
       <ul className="list-group">
         {todos.toSorted((a, b) => a.id - b.id).map(todo => (
           <li
@@ -52,6 +56,47 @@ export const TodoList = () => {
           </li>
         ))}
       </ul>
+      <ReselectMeta />
+    </>
+  );
+}
+
+type SearchInputProps = {
+  search: string;
+  setSearch: (value: string) => void;
+};
+
+
+const SearchInput = ({ search, setSearch }: SearchInputProps) => {
+  return (
+    <div className="input-group">
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <span className="input-group-text">
+        <i className="fas fa-search" />
+      </span>
+    </div>
+  );
+};
+
+
+const ReselectMeta = () => {
+  const meta = {
+    lastResult: selectMyTodosCompletedCount.lastResult(),
+    recomputations: selectMyTodosCompletedCount.recomputations(),
+    dependencyRecomputations: selectMyTodosCompletedCount.dependencyRecomputations(),
+    argsMemoize: selectMyTodosCompletedCount.argsMemoize,
+  }
+
+  return (
+    <>
+      <h2 style={{marginTop: 16}}>Reselect selectMyTodosCompletedCount Meta</h2>
+      <pre>{JSON.stringify(meta, null, 4)}</pre>
     </>
   );
 }
