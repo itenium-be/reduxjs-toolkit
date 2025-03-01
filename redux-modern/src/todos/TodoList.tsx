@@ -69,7 +69,7 @@ type SearchInputProps = {
 
 const SearchInput = ({ search, setSearch }: SearchInputProps) => {
   return (
-    <div className="input-group">
+    <div className="input-group mb-2">
       <input
         type="text"
         className="form-control"
