@@ -1,10 +1,7 @@
 export type Todo = {
   id: number;
+  userId: string;
   title: string;
   text: string;
   done: boolean;
-}
-
-export type RootState = {
-  todos: Todo[];
 }

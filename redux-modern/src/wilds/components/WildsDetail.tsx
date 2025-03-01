@@ -4,10 +4,9 @@ import { Visitor } from "../../zoo/MythicalZoo";
 import { WildsNavigator } from "./WildsNavigator";
 import { VisitWilds } from "./VisitWilds";
 import { Creatures, Facilities, FavouriteCreatures } from "../../zoo/components/ZooDetail";
-import { RootState, useAppDispatch, useAppSelector } from "../../store";
+import { createAppSelector, useAppDispatch, useAppSelector } from "../../store";
 import { useEffect } from "react";
 import { deleteVisitor, fetchWild, selectZoo } from "../wildsSlice";
-import { createSelector } from "@reduxjs/toolkit";
 
 
 export const WildsDetail = () => {
@@ -66,9 +65,9 @@ export const WildsDetail = () => {
   );
 };
 
-const selectVisitorsWithCreatures = createSelector(
+const selectVisitorsWithCreatures = createAppSelector(
   [
-    (state: RootState) => state.wilds.creatures,
+    state => state.wilds.creatures,
     (_, visitors: Visitor[]) => visitors,
   ],
   (creatures, visitors) => {
