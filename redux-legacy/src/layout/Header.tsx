@@ -6,7 +6,7 @@ export const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="https://itenium.be" target="_blank" rel="noopener noreferrer">
-            <img src="/itenium.png" alt="itenium company logo" />
+            <img src={`${import.meta.env.BASE_URL}itenium.png`} alt="itenium company logo" />
           </a>
           <button
             className="navbar-toggler"

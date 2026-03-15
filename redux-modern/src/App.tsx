@@ -32,7 +32,7 @@ export function App() {
   });
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Header />
       <div className="container mt-4">
         <Routes>

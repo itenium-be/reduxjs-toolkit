@@ -8,7 +8,7 @@ const TodoAdd = () => <h2>Add Todo</h2>;
 
 export function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Header />
       <div className="container mt-4">
         <Routes>
