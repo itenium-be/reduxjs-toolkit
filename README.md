@@ -17,8 +17,8 @@ Simple example of a legacy Redux implementation.
 
 ```sh
 cd redux-legacy
-npm install
-npm start
+bun install
+bun dev
 ```
 
 ## Redux Modern
@@ -29,8 +29,8 @@ npm start
 
 ```sh
 cd redux-modern
-npm install
-npm start
+bun install
+bun dev
 ```
 
 ### Mythical Zoos
