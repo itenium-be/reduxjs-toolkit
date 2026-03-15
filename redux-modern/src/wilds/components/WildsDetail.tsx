@@ -40,7 +40,7 @@ export const WildsDetail = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={`/zoos/${data.id}.png`}
+              src={`${import.meta.env.BASE_URL}zoos/${data.id}.png`}
               alt={data.name}
               className="img-fluid rounded-start"
             />
