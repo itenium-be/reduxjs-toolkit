@@ -1,2 +1,4 @@
 ~$*.pptx
 node_modules
+dist
+*.log

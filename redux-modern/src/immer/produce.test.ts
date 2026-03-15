@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { immerSlice, ImmerRootState } from "./immerSlice";
 import { produce } from "immer";
-import { WritableDraft } from "immer/dist/internal";
+import { type Draft } from "immer";
 
 type PizzaToppingType = "🍄" | "🧀" | "🌶️" | "🥓" | "🍤"; // | "🍍" (taken off the menu because we're not monsters)
 
@@ -109,7 +109,7 @@ describe("Pizza Reducing Hell", () => {
 // The Immer Way
 // Let's produce this with Immer, making our pizzas even tastier:
 const reducerTastyPizza = (baseState: PizzaState, action: UpdatePizzaTopping) => {
-  const recipe = (draft: WritableDraft<PizzaState>) => {
+  const recipe = (draft: Draft<PizzaState>) => {
     const pizza = draft.orders[action.pizza];
     if (!pizza)
       return;
