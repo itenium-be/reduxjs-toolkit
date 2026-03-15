@@ -24,7 +24,7 @@ export const ZooList = () => {
         {data!.map(zoo => (
           <div key={zoo.id} className="col-md-6 col-lg-4">
             <div className="card shadow-sm">
-              <img src={`/zoos/${zoo.id}.png`} className="card-img-top" alt={zoo.name} />
+              <img src={`${import.meta.env.BASE_URL}zoos/${zoo.id}.png`} className="card-img-top" alt={zoo.name} />
               <div className="card-body">
                 <h5 className="card-title d-flex justify-content-between align-items-center">
                   <span>{zoo.name}</span>

@@ -35,7 +35,7 @@ export const ZooDetail = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={`/zoos/${data.id}.png`}
+              src={`${import.meta.env.BASE_URL}zoos/${data.id}.png`}
               alt={data.name}
               className="img-fluid rounded-start"
             />
@@ -78,7 +78,7 @@ export const Facilities = ({facilities}: {facilities: Facility[]}) => {
             <div className="card h-100">
               <div className="position-relative">
                 <img
-                    src={`/zoos/facility/${facility.id}.webp`}
+                    src={`${import.meta.env.BASE_URL}zoos/facility/${facility.id}.webp`}
                   alt={facility.name}
                   className="card-img-top"
                 />
@@ -113,7 +113,7 @@ export const Creatures = ({creatures}: {creatures: Creature[]}) => {
             <div className="card h-100">
               <div className="position-relative">
                 <img
-                    src={`/zoos/creature/${creature.id}.webp`}
+                    src={`${import.meta.env.BASE_URL}zoos/creature/${creature.id}.webp`}
                   alt={creature.name}
                   className="card-img-top"
                 />
@@ -193,7 +193,7 @@ const SmallCreature = ({creature, isLast}: {creature: Creature, isLast: boolean}
   return (
     <div className={`d-flex align-items-center mb-${isLast ? 2 : 3} shadow-sm p-2 rounded`}>
       <img
-        src={`/zoos/creature/${creature.id}.webp`}
+        src={`${import.meta.env.BASE_URL}zoos/creature/${creature.id}.webp`}
         alt={creature.name}
         className="rounded me-3"
         style={{ width: "50px", height: "50px", objectFit: "cover" }}
