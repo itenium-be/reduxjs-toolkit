@@ -67,6 +67,11 @@ jobs:
       - name: Add landing page
         run: cp -r landing/* deploy/
 
+      # Pages has no SPA fallback: client-side routes 404 on a cold load.
+      # Pages only serves the site-root 404.html, so it holds the modern app.
+      - name: Add SPA fallback
+        run: cp redux-modern/dist/index.html deploy/404.html
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: deploy

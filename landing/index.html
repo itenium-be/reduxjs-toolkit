@@ -86,6 +86,10 @@
       margin: 18px 0;
     }
 
+    .duel { display: grid; gap: 24px; margin-bottom: 24px; grid-template-columns: 1fr 1fr; align-items: start; }
+
+    .duel .card { margin-bottom: 0; height: 100%; }
+
     .examples { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; margin-top: 20px; }
 
     .example {
@@ -129,7 +133,8 @@
     footer { text-align: center; color: var(--muted); margin-top: 40px; }
     footer a { color: var(--modern-bright); }
 
-    @media (max-width: 640px) {
+    @media (max-width: 760px) {
+      .duel { grid-template-columns: 1fr; }
       .examples { grid-template-columns: 1fr; }
     }
   </style>
@@ -138,20 +143,32 @@
   <main>
     <header>
       <h1>Redux Examples</h1>
-      <p>The same app, written twice: once the old way, once with Redux Toolkit.</p>
+      <p>The same ToDo app, written twice: once the old way, once with Redux Toolkit.</p>
     </header>
 
-    <a class="card legacy" href="./legacy/">
-      <span class="tag">Legacy Redux</span>
-      <h2>The canonical ToDo app</h2>
-      <p>
-        Add a todo, toggle it, fetch a list. Three actions, and already there are
-        <code>ACTION_TYPE</code> constants, hand-written action creators, a <code>switch</code> reducer,
-        spread operators nested three levels deep and a <code>connect()</code> wrapper with
-        <code>mapStateToProps</code> and <code>mapDispatchToProps</code>.
-      </p>
-      <p class="go">Show me the boilerplate &rarr;</p>
-    </a>
+    <div class="duel">
+      <a class="card legacy" href="./legacy/">
+        <span class="tag">Legacy Redux</span>
+        <h2>The canonical ToDo app</h2>
+        <p>
+          Add a todo, toggle it, fetch a list. Three actions, and already there are
+          <code>ACTION_TYPE</code> constants, hand-written action creators, a <code>switch</code> reducer,
+          spread operators nested three levels deep and a <code>connect()</code> wrapper with
+          <code>mapStateToProps</code> and <code>mapDispatchToProps</code>.
+        </p>
+        <p class="go">Show me the boilerplate &rarr;</p>
+      </a>
+      <a class="card modern" href="./modern/todos">
+        <span class="tag">Modern Redux</span>
+        <h2>The same ToDo app</h2>
+        <p>
+          One <code>createSlice</code>: action types, action creators and reducer in a single
+          object, with Immer letting those reducers mutate <code>state</code> directly and
+          still hand back a new immutable tree.
+        </p>
+        <p class="go">Show me the slice &rarr;</p>
+      </a>
+    </div>
 
     <a class="card modern" href="./modern/">
       <span class="tag">Modern Redux</span>
@@ -178,16 +195,6 @@
         </div>
       </div>
       <p class="go" style="margin-top: 20px">Visit the zoos &rarr;</p>
-    </a>
-
-    <a class="card modern" href="./modern/">
-      <span class="tag">Modern Redux</span>
-      <h2>✅ Todos, with Immer</h2>
-      <p>
-        The legacy ToDo app again, now as a <code>createSlice</code>: reducers that mutate
-        <code>state</code> directly and still produce a new immutable tree.
-      </p>
-      <p class="go">Compare the two &rarr;</p>
     </a>
 
     <section class="posts">
