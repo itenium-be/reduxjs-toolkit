@@ -13,17 +13,7 @@ import { WildsDetail } from "./wilds/components/WildsDetail";
 import { getCreatures } from "./wilds/wildsSlice";
 import { useAppDispatch } from "./store";
 import { Users } from "./more/Users";
-
-const Home = () => (
-  <>
-    <h2>Modern Redux</h2>
-    <ul>
-      <li><b>Todos</b>: Basics + Immer</li>
-      <li><b>Mythical Zoos</b>: RTK Query</li>
-      <li><b>Enchanted Wilds</b>: createAsyncThunk</li>
-    </ul>
-  </>
-);
+import { Home } from "./layout/Home";
 
 export function App() {
   const dispatch = useAppDispatch();
