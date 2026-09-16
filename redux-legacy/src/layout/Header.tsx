@@ -32,6 +32,13 @@ export const Header = () => {
                 </Link>
               </li>
             </ul>
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a className="nav-link" href={`${import.meta.env.BASE_URL}../`}>
+                  &larr; All Redux Examples
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
