@@ -3,6 +3,8 @@ import { connect, ConnectedProps } from "react-redux";
 import { increaseYear, increaseYearAsync } from "../more/moreSlice";
 import { RootState } from "../store";
 
+const REPO_URL = "https://github.com/itenium-be/reduxjs-toolkit";
+
 class FooterComponent extends Component<PropsFromRedux> {
   render() {
     const syncAction = () => this.props.increaseYear();
@@ -26,6 +28,10 @@ class FooterComponent extends Component<PropsFromRedux> {
             &nbsp;--&nbsp;&nbsp;
             <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
               Learn React
+            </a>
+            &nbsp;--&nbsp;&nbsp;
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-github" /> GitHub
             </a>
           </p>
         </div>
